@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <!-- Latest compiled and minified CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+
+
+    <title>AIChE Job Board</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="bg-light p-5 rounded-lg m-3">
+        <h1 class='display-4'>Delaware Valley - AIChE Job Board</h1>
+        <p class='lead'>A search for Chemical Engineering jobs in the Greater Philadelphia area.</p>
+      </div>
+
+    </div>
+    <div class="container">
+
+        <table id="myTable" class='table table-sm table-hover' cellspacing="0" >
+
+
+          <thead class='table-light'>
+            <tr>
+              <th style="width:45%" class='th-sm'>Role</th>
+              <th style="width=45%" class='th-sm'>Company</th>
+              <th style="width=10%" class='th-sm'>Date Posted</th>
+
+            </tr>
+          </thead>
+          <tbody>
+            {% for title,company,link,date in data %}
+              <tr class="table_row" data-href="{{ link }}">
+                <td><a href="{{ link }}">{{ title }}</a>{{ Title }}</td>
+                <td>{{ company }}</td>
+                <td>{{ date }}</td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+    </div>
+
+    <div class="container">
+      <footer class='text-center py-3'>For comments or suggestions, please contact piercecolin94@gmail.com.</footer>
+
+
+    </div>
+
+
+  </body>
+</html>
