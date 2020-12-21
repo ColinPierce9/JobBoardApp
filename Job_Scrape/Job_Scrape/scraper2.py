@@ -10,6 +10,8 @@ import requests
 from bs4 import BeautifulSoup
 import pandas as pd
 from datetime import date, timedelta
+from requests.adapters import HTTPAdapter
+from requests.packages.urllib3.util.retry import Retry
 
 
 ### Indeed Job Scraper
@@ -19,7 +21,15 @@ from datetime import date, timedelta
 def load_indeed_jobs_div(job_title, location):
     getVars = {'q': job_title,'l': location, 'limit':25}
     url = ('https://www.indeed.com/jobs?' + urllib.parse.urlencode(getVars))
-    r = requests.get(url)
+    
+    session = requests.Session()
+    retry = Retry(connect=3, backoff_factor=0.5)
+    adapter = HTTPAdapter(max_retries=retry)
+    session.mount('http://', adapter)
+    session.mount('https://', adapter)
+
+    r = session.get(url)
+    
     soup = BeautifulSoup(r.text,'html5lib')
     return soup
 
@@ -113,7 +123,15 @@ def find_jobs_from_indeed(job_title, location):
 def load_monster_jobs_div(job_title, location):
     getVars = {'q': job_title,'where': location}
     url = ('https://www.monster.com/jobs/search/?' + urllib.parse.urlencode(getVars) + '&stpage=1&page=2')
-    r = requests.get(url)
+    
+    session = requests.Session()
+    retry = Retry(connect=3, backoff_factor=0.5)
+    adapter = HTTPAdapter(max_retries=retry)
+    session.mount('http://', adapter)
+    session.mount('https://', adapter)
+
+    r = session.get(url)
+
     soup = BeautifulSoup(r.text,'html.parser')
     return soup
 
@@ -207,7 +225,15 @@ def find_jobs_from_monster(job_title, location):
 def load_linkedin_jobs_div(job_title, location):
     getVars = {'keywords': job_title,'location': location}
     url = ('https://www.linkedin.com/jobs/search?' + urllib.parse.urlencode(getVars) + '&geoId=&trk=public_jobs_jobs-search-bar_search-submit&redirect=false&position=1&pageNum=0')
-    r = requests.get(url)
+    
+    session = requests.Session()
+    retry = Retry(connect=3, backoff_factor=0.5)
+    adapter = HTTPAdapter(max_retries=retry)
+    session.mount('http://', adapter)
+    session.mount('https://', adapter)
+
+    r = session.get(url)
+    
     soup = BeautifulSoup(r.text,'html.parser')
     return soup
 
