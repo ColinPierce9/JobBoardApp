@@ -1,2 +1,3 @@
 # JobBoardApp
-Web scraper to pull listings from popular job sites based on role and location. 
+Application built with Python and Django framework to find and post recent listings based on Role and Location. 
+
