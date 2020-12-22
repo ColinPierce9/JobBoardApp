@@ -22,7 +22,7 @@ def load_indeed_jobs_div(job_title, location):
     getVars = {'q': job_title,'l': location, 'limit':25}
     url = ('https://www.indeed.com/jobs?' + urllib.parse.urlencode(getVars))
 
-    r = request.get(url)
+    r = requests.get(url)
     
     soup = BeautifulSoup(r.text,'html5lib')
     return soup
@@ -118,7 +118,7 @@ def load_monster_jobs_div(job_title, location):
     getVars = {'q': job_title,'where': location}
     url = ('https://www.monster.com/jobs/search/?' + urllib.parse.urlencode(getVars) + '&stpage=1&page=2')
 
-    r = request.get(url)
+    r = requests.get(url)
 
     soup = BeautifulSoup(r.text,'html.parser')
     return soup
@@ -214,7 +214,7 @@ def load_linkedin_jobs_div(job_title, location):
     getVars = {'keywords': job_title,'location': location}
     url = ('https://www.linkedin.com/jobs/search?' + urllib.parse.urlencode(getVars) + '&geoId=&trk=public_jobs_jobs-search-bar_search-submit&redirect=false&position=1&pageNum=0')
 
-    r = request.get(url)
+    r = requests.get(url)
     
     soup = BeautifulSoup(r.text,'html.parser')
     return soup
