@@ -23,7 +23,7 @@ def load_indeed_jobs_div(job_title, location):
     url = ('https://www.indeed.com/jobs?' + urllib.parse.urlencode(getVars))
 
     r = requests.get(url)
-    
+
     soup = BeautifulSoup(r.text,'html5lib')
     return soup
 
@@ -85,8 +85,7 @@ def clean_indeed_df(indeed_df):
             for i in indeed_df['dates'][x].split():
                 if i.isdigit():
                     num = int(i)
-
-                indeed_df['dates'][x] = today - timedelta(days=num)
+                    indeed_df['dates'][x] = today - timedelta(days=num)
 
     # sort by dates column
 
@@ -215,7 +214,7 @@ def load_linkedin_jobs_div(job_title, location):
     url = ('https://www.linkedin.com/jobs/search?' + urllib.parse.urlencode(getVars) + '&geoId=&trk=public_jobs_jobs-search-bar_search-submit&redirect=false&position=1&pageNum=0')
 
     r = requests.get(url)
-    
+
     soup = BeautifulSoup(r.text,'html.parser')
     return soup
 
