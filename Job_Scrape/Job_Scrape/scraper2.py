@@ -305,12 +305,12 @@ def find_jobs_from_linkedin(job_title, location):
 
 def get_all_jobs(job_title, location):
     l_df = find_jobs_from_linkedin(job_title,location)
-    i_df = find_jobs_from_indeed(job_title,location)
+    #i_df = find_jobs_from_indeed(job_title,location)
     m_df = find_jobs_from_monster(job_title,location)
 
     # concat the dataframe together
     # NOTE: Put i_df back in frames list to reintroduce indeed back if you fix it!!!
-    frames = [i_df,m_df,l_df]
+    frames = [m_df,l_df]
     job_df = pd.concat(frames)
 
     # remove duplicates (same title and companies)
